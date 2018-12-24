@@ -1,0 +1,37 @@
+package com.ethan.email;
+
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+import org.junit.Test;
+
+public class MailDemo {
+	@Test
+	public void fun1() {
+		/*
+		 * 1.得到Session
+		 */
+		Properties props = new Properties();
+		props.setProperty("mail.host", "smtp.163.com");
+		props.setProperty("mail.smtp.auth", "true");
+		
+		Authenticator auth = new Authenticator() {
+			@Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication("","");
+			}
+		};
+		
+		Session session = Session.getInstance(props, auth);
+		/*
+		 * 2.创建MimeMessage
+		 */
+		MimeMessage msg = new MimeMessage(session);
+		msg.setFrom(new InternetAddress(""));
+	}
+}

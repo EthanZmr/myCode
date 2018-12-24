@@ -1,0 +1,22 @@
+package com.ethan.book_manager.dao;
+
+import java.util.List;
+
+import org.apache.commons.dbutils.QueryRunner;
+
+import com.ethan.book_manager.domain.Book;
+
+import cn.itcast.jdbc.TxQueryRunner;
+
+public class BookDao {
+	private QueryRunner qr = new TxQueryRunner();
+	
+	public List<Book> findAll(){
+		String sql = "select * from t_book";
+		return null;
+	}
+	
+	public List<Book> findByCategory(){
+		return null;
+	}
+}

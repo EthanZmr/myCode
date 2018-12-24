@@ -1,0 +1,10 @@
+package com.ethan.base64;
+
+import org.junit.jupiter.api.Test;
+
+public class Demo {
+	@Test
+	public void fun1() {
+		
+	}
+}

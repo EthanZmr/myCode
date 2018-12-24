@@ -1,0 +1,9 @@
+javaWeb监听器
+	三大组件：
+		* Servlet
+		* Listener
+		* Filter
+		
+	Listener:监听器
+		它是一个接口，内容由我们来实现
+		它需要注册，例如注册在按钮上

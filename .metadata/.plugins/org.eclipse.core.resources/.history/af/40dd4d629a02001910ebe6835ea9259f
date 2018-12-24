@@ -1,0 +1,7 @@
+package com.ethan.cstm.service;
+
+import cn.itcast.cstm.dao.CustomerDao;
+
+public class CustomerService {
+	private CustomerDao customerDao = new CustomerDao();
+}

@@ -1,0 +1,51 @@
+package com.ethan.demo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+
+import com.ethan.domain.City;
+import com.ethan.domain.Province;
+import com.thoughtworks.xstream.XStream;
+
+public class Demo {
+	
+	public List<Province> getProvinceList(){
+		Province p1 = new Province();
+		p1.setName("北京");
+		p1.addCity(new City("东城区", "DongChengQu"));
+		p1.addCity(new City("昌平区", "ChangPingQu"));
+		
+		Province p2 = new Province();
+		p2.setName("辽宁");
+		p2.addCity(new City("沈阳", "shenYang"));
+		p2.addCity(new City("葫芦岛", "huLuDao"));
+		
+		List<Province> provinceList = new ArrayList<Province>();
+		provinceList.add(p1);
+		provinceList.add(p2);
+		
+		return provinceList;
+		
+	}
+	@Test
+	public void xstream() {
+		List<Province> list = getProvinceList();
+		XStream xstream = new XStream();
+		//给List类型指定别名为china
+		xstream.alias("china", List.class);
+		//给Province类型指定别名为province
+		xstream.alias("province", Province.class);
+		//给City类型指定别名为city
+		xstream.alias("city", City.class);
+		//把Province类型的name属性，生成<province>的name属性
+		xstream.useAttributeFor(Province.class, "name");
+		//去除Province类的名为cities的List类型属性
+		xstream.addImplicitCollection(Province.class, "cities");
+		//让city类的，名为description属性不生成对应的xml元素
+		xstream.omitField(City.class, "description");
+		String xml = xstream.toXML(xstream);
+		
+	}
+}

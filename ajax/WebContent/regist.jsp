@@ -1,0 +1,50 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	window.onload = function(){
+		var username = document.getElementById("username");
+		username.onblur = function(){
+			var XMLHttp = createXmlHttpRequest();
+			XMLHttp.open("POST","/ajax/RegistServlet",true);
+			XMLHttp.setRequestHeader("content-Type","application/x-www-form-urlencoded");
+			XMLHttp.send("username=" + username.value);
+			XMLHttp.onreadystatechange = function(){
+				if(XMLHttp.readyState == 4 && XMLHttp.status==200){
+					var content = XMLHttp.responseText;
+					var errorEle = document.getElementById("errorSpan");
+					errorEle.innerHTML = content;
+				}
+			}
+	
+		}
+	}
+	function createXmlHttpRequest(){
+		try {
+			return new XMLHttpRequest();
+		} catch (e) {
+			try {
+				return new ActiveXObject("Msxml2.XMLHTTP");
+			} catch (e) {
+				try {
+					return new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e) {
+					throw e;
+				}
+			}
+		}
+	}
+</script>
+<body>
+	<form action="" method="post">
+		 用户名:<input type="text" name="username" id="username"/><span id="errorSpan"></span><br>
+		 密码:<input type="password" name="password"/><br>
+		 <input type="submit" value="提交"/>
+	</form>
+</body>
+</html>

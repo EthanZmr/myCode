@@ -1,0 +1,12 @@
+package com.ethan.book_manager.service;
+
+import java.util.List;
+
+import com.ethan.book_manager.domain.Book;
+
+public class BookService {
+	private BookDao bookDao = new BookDao();
+	public List<Book> findAll(){
+		return null;
+	}
+}

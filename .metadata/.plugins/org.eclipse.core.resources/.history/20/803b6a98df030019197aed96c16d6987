@@ -1,0 +1,5 @@
+package com.ethan.book_manager.web.filter;
+
+public class StaticResponse {
+
+}

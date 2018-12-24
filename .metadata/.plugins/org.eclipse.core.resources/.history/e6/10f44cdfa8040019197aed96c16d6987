@@ -1,0 +1,19 @@
+package com.ethan.email;
+
+import java.util.Properties;
+
+import org.junit.Test;
+
+public class MailDemo {
+	@Test
+	public void fun1() {
+		/*
+		 * 1.得到Session
+		 */
+		Properties props = new Properties();
+		props.setProperty("mail.host", "smtp.163.com");
+		props.setProperty("mail.smtp.auth", "true");
+		
+		Authentitor auth = new Authentitor();
+	}
+}

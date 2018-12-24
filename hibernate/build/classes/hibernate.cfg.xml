@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- 配置数据库信息 -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql:///test?characterEncoding=UTF-8</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">12345678</property>
+		
+		<!-- 配置hibernate信息 -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		
+		<!-- hibernate帮忙创建表 -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		
+		<!-- 数据库方言 -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		
+		<!-- hibernate绑定session -->
+		<property name="hibernate.current_session_context_class">thread</property>
+		
+		<mapping resource="cn/ethan/model/User.hbm.xml"/>
+		<mapping resource="cn/ethan/model/Customer.hbm.xml"/>
+		<mapping resource="cn/ethan/model/Contact.hbm.xml"/>
+		<mapping resource="cn/ethan/entity/User.hbm.xml"/>
+		<mapping resource="cn/ethan/entity/Role.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>

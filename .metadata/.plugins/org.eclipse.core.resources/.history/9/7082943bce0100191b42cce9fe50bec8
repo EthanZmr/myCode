@@ -1,0 +1,9 @@
+common-dbutils.jar
+
+QueryRunner
+	--- int update(String sql, Object[] params);    //可执行增删该语句
+	--- T query(String sql, ResultSetHandler rsh, Object... params);    //可执行查询
+		* 它会先得到ResultSet,然后调用rsh的handle()把rs转换成需要的类型！
+		
+query方法：
+	* T query(String sql, ResultSetHandler rsh, Object... params) //可执行查询

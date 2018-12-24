@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 修改struts2默认常量值 -->
+	<!-- 配置编码 action中通过post提交方式不存在中文乱码问题 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<!-- 1.package类似于包 用于区别不同的action，配置action必须先写一个package
+		 2.name:属性值跟功能本身没有关系，在一个配置文件中可以写多个package标签 但是name值不能相同
+		 3.extends：属性值固定为 struts-default 设置这个属性值后在package里面配置的类具有action功能
+		 4.namespace：属性值和action标签中的name属性值构成访问路径 -->
+	<package name="helloDemo" extends="struts-default" namespace="/">
+		<!-- package中可以有多个action 但是action的name属性值不能相同
+			class：action类的全路径
+			method：action中默认执行execute方法 但是在action中写其他方法 使用method配置可以让action中多个方法执行 -->
+		<!-- 访问action中的方法
+			1.使用action标签的method属性，在这个属性里面写执行的action方法
+			2.使用通配符方式实现
+			3.动态访问实现（一般不用）
+			
+			action中的方法可以没有返回值，又返回值时返回值类型必须是String
+			没有返回值时，在rusult标签不需要配置
+			让action方法的返回值返回一个“none” -->	
+		<action name="hello" class="cn.ethan.action.HelloAction">
+			<!-- result：根据action的方法返回值，配置到不同的路径中去
+				 name：和方法的返回值要一样
+				 type：配置如何到路径中去（转发或重定向） 默认做转发操作 -->
+			<result name="hello">/hello.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 配置action的方法访问 -->
+<!-- 	<package name="BookDemo" extends="struts-default" namespace="/">
+		<action name="bookadd" class="cn.ethan.action.BookAction" method="add"></action>
+		<action name="bookupdate" class="cn.ethan.action.BookAction" method="update"></action>
+	</package> -->
+	
+	<!-- 配置通配符访问action中的方法 -->
+	<!-- method: 写*的值 {1}表示第一个*的值 -->
+	<package name="BookDemo" extends="struts-default" namespace="/">
+		<action name="book_*" class="cn.ethan.action.BookAction" method="{1}"></action>
+	</package>
+	
+	<!-- 如果有多个action 方法里面返回值相同，到页面也是相同，这个时候可以使用全局结果页面配置 -->
+	<package name="shop_action" extends="struts-default" namespace="/">
+		<!-- 全局结果页面配置 -->
+		<global-results>
+			<result name="success">/hello.jsp</result>
+		</global-results>
+		<action name="shop" class="cn.ethan.action.Shop"></action>
+		<action name="orders" class="cn.ethan.action.OrdersAction"></action>
+	</package>
+	
+	<package name="customer_demo" extends="struts-default" namespace="/">
+		<!-- 声明拦截器 -->
+		<interceptors>
+			<interceptor name="loginInterceptor" class="cn.ethan.interceptor.LoginInterceptor"></interceptor>
+		</interceptors>
+		<action name="customer_*" class="cn.ethan.action.CustomerAction" method="{1}">
+			<!-- 使用拦截器 -->
+			<interceptor-ref name="loginInterceptor">
+				<!-- 配置action里面某些方法不进行拦截 
+					name属性值：excludeMethods-->
+				<param name="excludeMthods">login</param>
+			</interceptor-ref>
+			
+			<!-- 默认拦截器再手动使用一次 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			
+			
+			<!-- type:如何到路径中去（转发还是重定向） 
+				 1.默认值：什么都不写，做转发操作，值为dispatcher
+				 2.做重定向操作，值是redirect
+				 
+				 配置到其他action中去：
+				 	chain：转发到action中，一般不用，存在缓存问题
+				 	redirectAction：重定向action-->
+			<result name="list" >/customer.jsp</result>	
+			<result name="loginSuccess">/customer.jsp</result>
+			<result name="loginFailed">/login.jsp</result>		
+		</action>
+	</package>
+	
+	<package name="ognl_demo" extends="struts-default" namespace="/">
+		<action name="user_demo" class="cn.ethan.ognl.action.UserAction"></action>
+		<action name="valuestack_demo" class="cn.ethan.ognl.action.ValueStackDemoAction">
+			<result name="success">/valueStack.jsp</result>
+		</action>
+		<action name="object_demo" class="cn.ethan.ognl.action.ObjectDemoAction">
+			<result name="success">/valueStack.jsp</result>
+		</action>
+		<action name="list_demo" class="cn.ethan.ognl.action.ListDemoAction">
+			<result name="success">/valueStack.jsp</result>
+		</action>
+		<action name="valuestack" class="cn.ethan.ognl.valuestack.ValueStackAction">
+			<result name="success">/ognl.jsp</result>
+		</action>
+		<action name="object_list" class="cn.ethan.ognl.valuestack.ObjectValueStackAction">
+			<result name="success">/ognl.jsp</result>
+		</action>
+		<action name="context_demo" class="cn.ethan.ognl.action.ContextAction">
+			<result name="success">/context.jsp</result>
+		</action>
+	</package>
+	
+</struts>

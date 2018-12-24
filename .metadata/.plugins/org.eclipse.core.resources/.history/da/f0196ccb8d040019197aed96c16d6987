@@ -1,0 +1,13 @@
+下载
+	1.下载就是向客户端响应字节数据
+	  原来我们响应的都是html的字符数据
+	  把一个文件变成字节数组，使用response.getOutputStream()来响应给浏览器。
+	  
+	2.下载的要求
+		* 两个头一个流
+			> Content-type : 响应头	你传递给客户端的文件是什么MIME类型，例如：image/pjpeg
+				通过文件名称调用ServletContext的getMimeType()方法，得到MIME类型
+			> Content-Disposition: 它的默认是是inline,表示在浏览器窗口中打开！  attachement;filename=xxx
+			> 流：要下载的文件数据！
+			
+	

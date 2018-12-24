@@ -1,0 +1,12 @@
+package com.ethan.cstm.service;
+
+import com.ethan.cstm.dao.CustomerDao;
+import com.ethan.cstm.domain.Customer;
+
+public class CustomerService {
+	private CustomerDao customerDao = new CustomerDao();
+	
+	public void add(Customer c) {
+		
+	}
+}

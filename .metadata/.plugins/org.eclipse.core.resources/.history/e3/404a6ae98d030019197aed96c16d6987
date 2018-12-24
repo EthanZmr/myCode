@@ -1,0 +1,5 @@
+package com.ethan.web.listener;
+
+public class PropertyListener {
+
+}

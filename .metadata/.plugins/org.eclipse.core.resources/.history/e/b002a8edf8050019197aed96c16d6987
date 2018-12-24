@@ -1,0 +1,20 @@
+function createXmlHttpRequest(){
+	try {
+		return new XMLHttpRequest();
+	} catch (e) {
+		try {
+			return new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				return new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e) {
+				throw e;
+			}
+		}
+	}
+}
+
+function ajax(/*请求方式*/method,url,asyn,params){
+	var xmlHttp = createXmlHttpRequest();
+	xmlHttp.open(method,url,asyn);
+}

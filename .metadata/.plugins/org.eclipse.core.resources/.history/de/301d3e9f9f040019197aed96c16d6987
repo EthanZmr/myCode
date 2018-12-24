@@ -1,0 +1,12 @@
+package com.ethan.base64;
+
+import org.junit.jupiter.api.Test;
+import sun.misc.BASE64Encoder;
+
+public class Demo {
+	@Test
+	public void fun1() {
+		String s = "username";
+		BASE64Encoder encoder = new BASE64Encoder();
+	}
+}

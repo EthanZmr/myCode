@@ -1,0 +1,22 @@
+package com.ethan.book_manager.web.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cn.itcast.servlet.BaseServlet;
+
+public class BookServlet extends BaseServlet{
+	
+	private BookService bookService = new BookService();
+	
+	public String findAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		return null;
+	}
+	
+	public String findByCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		return null;
+	}
+}

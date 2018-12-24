@@ -1,0 +1,6 @@
+package com.ethan.book_manager.dao;
+
+public class BookDao {
+	private QueryRunner qr = new TxQueryRunner();
+	
+}

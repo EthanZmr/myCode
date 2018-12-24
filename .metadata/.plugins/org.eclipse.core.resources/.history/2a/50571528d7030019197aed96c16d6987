@@ -1,0 +1,5 @@
+package com.ethan.book_manager.domain;
+
+public class Book {
+
+}

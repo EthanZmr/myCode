@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	/*
+		1.在文档加载完毕时发送请求，得到所有省份元素，显示在<select name="province"/>中
+		2.在选择了新的省份时，发送请求（参数为省名称），得到xml文档，即<province>元素
+		  解析xml文档，得到其中所有的<city>，再得到每个<city>元素的内容，即市名，使用市名生成<option>，插入到<select name="city">元素中
+	*/
+	window.onload = function(){
+			  
+		  }
+</script>
+<body>
+	<h1>省市联动</h1>
+	<select name="province">
+		<option>===请选择省===</option>
+	</select>
+	<select name="city">
+		<option>===请选择市===</option>
+	</select>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.ethan.entity.User" table="user">
+		<id name="user_id" column="user_id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="user_name" column="user_name"></property>
+		<property name="user_password" column="user_password"></property>
+		
+		<set name="setRole" table="user_role" cascade="save-update,delete">
+			<key column="user_id"></key>
+			<many-to-many class="cn.ethan.entity.Role" column="role_id"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

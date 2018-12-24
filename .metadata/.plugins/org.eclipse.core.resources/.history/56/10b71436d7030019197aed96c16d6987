@@ -1,0 +1,8 @@
+package com.ethan.book_manager.domain;
+
+public class Book {
+	private String bid;
+	private String bname;
+	private double price;
+	private int category;
+}

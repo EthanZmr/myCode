@@ -1,0 +1,7 @@
+<classpath>
+  <container id="SSH!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="/Users/ethan/eclipse-workspace/SSH/WebContent/WEB-INF/lib/spring-orm-5.0.5.RELEASE.jar">
+      <source-attachment-path>/Users/ethan/Downloads/spring-framework-5.0.5.RELEASE/libs/spring-orm-5.0.5.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+</classpath>

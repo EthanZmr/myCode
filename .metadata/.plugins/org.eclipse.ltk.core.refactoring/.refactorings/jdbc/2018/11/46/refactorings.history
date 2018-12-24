@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;bid_data&apos; to &apos;big_data&apos;&#x0A;- Original project: &apos;jdbc&apos;&#x0A;- Original element: &apos;jdbc/src/bid_data&apos;&#x0A;- Renamed element: &apos;jdbc/src/big_data&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;bid_data&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;bid_data" name="big_data" qualified="false" references="true" stamp="1542352589404" textual="false" version="1.0"/>
+</session>

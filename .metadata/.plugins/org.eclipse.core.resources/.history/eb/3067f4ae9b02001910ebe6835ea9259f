@@ -1,0 +1,135 @@
+package com.ethan.cstm.domain;
+
+import java.util.Date;
+/*
+ * 领域对象
+ * 与表单和数据表对应
+ */
+public class Customer {
+	private String cid;
+	private String cname;
+	private String gender;
+	private String birthday;
+	private String cellphone;
+	private String email;
+	private String description;
+	public Customer() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Customer(String cid, String cname, String gender, String birthday, String cellphone, String email,
+			String description) {
+		super();
+		this.cid = cid;
+		this.cname = cname;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.cellphone = cellphone;
+		this.email = email;
+		this.description = description;
+	}
+	public String getCid() {
+		return cid;
+	}
+	public void setCid(String cid) {
+		this.cid = cid;
+	}
+	public String getCname() {
+		return cname;
+	}
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+	public String getCellphone() {
+		return cellphone;
+	}
+	public void setCellphone(String cellphone) {
+		this.cellphone = cellphone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((birthday == null) ? 0 : birthday.hashCode());
+		result = prime * result + ((cellphone == null) ? 0 : cellphone.hashCode());
+		result = prime * result + ((cid == null) ? 0 : cid.hashCode());
+		result = prime * result + ((cname == null) ? 0 : cname.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Customer other = (Customer) obj;
+		if (birthday == null) {
+			if (other.birthday != null)
+				return false;
+		} else if (!birthday.equals(other.birthday))
+			return false;
+		if (cellphone == null) {
+			if (other.cellphone != null)
+				return false;
+		} else if (!cellphone.equals(other.cellphone))
+			return false;
+		if (cid != other.cid)
+			return false;
+		if (cname == null) {
+			if (other.cname != null)
+				return false;
+		} else if (!cname.equals(other.cname))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (gender == null) {
+			if (other.gender != null)
+				return false;
+		} else if (!gender.equals(other.gender))
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "Customer [cid=" + cid + ", cname=" + cname + ", gender=" + gender + ", birthday=" + birthday
+				+ ", cellphone=" + cellphone + ", email=" + email + ", description=" + description + "]";
+	}
+	
+}

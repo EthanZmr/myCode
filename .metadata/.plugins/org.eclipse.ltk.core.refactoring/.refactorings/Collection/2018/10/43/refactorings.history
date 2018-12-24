@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;LinkedListDemo&apos; to &apos;linkedListDemo&apos;&#x0A;- Original project: &apos;Collection&apos;&#x0A;- Original element: &apos;Collection/src/LinkedListDemo&apos;&#x0A;- Renamed element: &apos;Collection/src/linkedListDemo&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;LinkedListDemo&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;LinkedListDemo" name="linkedListDemo" qualified="false" references="true" stamp="1540293793963" textual="false" version="1.0"/>
+</session>

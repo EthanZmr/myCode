@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+
+	<!-- 默认配置信息 -->
+	<default-config>
+		<property name="jdbcUrl">jdbc:mysql://localhost:3306/test?characterEncoding=utf-8</property>
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="user">root</property>
+		<property name="password">12345678</property>
+		<property name="acquireIncrement">3</property>
+		<property name="initialPoolSize">10</property>
+		<property name="minPoolSize">2</property>
+		<property name="maxPoolSize">10</property>
+	</default-config>
+	
+	<!-- 专为oracle配置的信息 -->
+	<name-config name="oracle-config">
+		<property name="jdbcUrl">jdbc:mysql://localhost:3306/test</property>
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="user">root</property>
+		<proprty name="password">12345678</proprty>
+		<property name="acquireIncrement">3</property>
+		<property name="initialPoolSize">10</property>
+		<property name="minPoolSize">2</property>
+		<property name="maxPoolSize">10</property>
+		
+	</name-config>
+</c3p0-config>

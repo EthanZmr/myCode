@@ -1,0 +1,15 @@
+
+	<!ELEMENT person (name,age,birthday)>
+	<!ELEMENT name (#PCDATA)>
+	<!ATTLIST name
+		ID3 ID #REQUIRED
+	>
+	<!ELEMENT age (#PCDATA)>
+	<!ATTLIST age
+		ID2 (AA|BB|CC) #REQUIRED
+	>
+	<!ELEMENT birthaday (#PCDATA)>
+	<!ATTLIST birthday
+		ID1 CDATA #REQUIRED
+	>
+	<!ENTITY TEST "hhhhh">

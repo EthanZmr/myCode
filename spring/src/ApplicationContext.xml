@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"        
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xmlns:aop="http://www.springframework.org/schema/aop"  
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"              
+    xsi:schemaLocation="                                               
+            http://www.springframework.org/schema/beans    
+            http://www.springframework.org/schema/beans/spring-beans.xsd    
+            http://www.springframework.org/schema/context     
+            http://www.springframework.org/schema/context/spring-context.xsd     
+            http://www.springframework.org/schema/tx   
+            http://www.springframework.org/schema/tx/spring-tx.xsd  
+            http://www.springframework.org/schema/aop  
+            http://www.springframework.org/schema/aop/spring-aop.xsd " >
+        
+        <!--  ioc入门 
+        <bean id="user" class="cn.ethan.ioc.User"></bean>
+        
+        使用静态工厂创建对象
+        <bean id="bean2" class="cn.ethan.demo.Bean2Factory" factory-method="getBean2"></bean>
+        
+        实例工厂创建对象
+        先创建工厂对象
+        <bean id="bean3Factory" class="cn.ethan.demo.Bean3Factory"></bean>
+        <bean id="bean3" factory-bean="bean3Factory" factory-method="getBean3"></bean>
+        
+        有参构造注入
+        <bean id="preperty" class="cn.ethan.ioc.Preperty">
+        	<constructor-arg name="name" value="校长小张"></constructor-arg>
+        </bean>
+        
+        set方法注入
+        <bean id="book" class="cn.ethan.ioc.Book">
+        	<property name="bookname" value="Java核心技术"></property>
+        </bean>
+        
+        <bean id="userDao" class="cn.ethan.ioc.UserDao"></bean>
+        
+        <bean id="userService" class="cn.ethan.ioc.UserService">
+        	<property name="userdao" ref="userDao"></property>
+        </bean>
+        
+        p名称空间注入
+        <bean id="propertyDemo" class="cn.ethan.ioc.PropertyDemo" p:pname="lucy"></bean>
+        
+        开启注解扫描
+        <context:component-scan base-package="cn.ethan.anno"></context:component-scan>
+        
+        配置对象
+        <bean id="shopService" class="cn.ethan.anno.ShopService"></bean>
+        <bean id="shopDao" class="cn.ethan.anno.ShopDao"></bean>
+        <bean id="ordersDao" class="cn.ethan.anno.OrdersDao"></bean> -->
+        
+        <!-- 配置对象 -->
+        <!-- <bean id="book" class="cn.ethan.aop.Book"></bean>
+        <bean id="myBook" class="cn.ethan.aop.MyBook"></bean> -->
+        
+        <!-- 配置aop操作 -->
+        <!-- <aop:config>
+        	配置切入点
+        	<aop:pointcut expression="execution(* cn.ethan.aop.Book.add())" id="add"/>
+        	配置切面 ref:增强类的方法
+        	<aop:aspect ref="myBook">
+        		前置增强
+        		<aop:before method="before1" pointcut-ref="add"/>
+        		
+        		<aop:after method="after" pointcut-ref="add"/>
+        		
+        		<aop:around method="around" pointcut-ref="add"/>
+        	</aop:aspect>
+        </aop:config> -->
+        
+        
+        <!-- <bean id="userService" class="cn.ethan.service.UserService">
+        	<property name="userDao" ref="userDao"></property>
+        </bean>
+        <bean id="userDao" class="cn.ethan.dao.UserDao"></bean>
+        
+        <bean id="book" class="cn.ethan.anno_aop.Book"></bean>
+        <bean id="myBook" class="cn.ethan.anno_aop.MyBook"></bean>
+        
+        <aop:aspectj-autoproxy></aop:aspectj-autoproxy> -->
+        
+        <!-- 配置c3p0连接池 -->
+        <bean id="comboPool" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        	<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        	<property name="jdbcUrl" value="jdbc:mysql:///test?characterEncoding=UTF-8"></property>
+        	<property name="user" value="root"></property>
+        	<property name="password" value="12345678"></property>
+        </bean>
+        
+        <bean id="service" class="cn.ethan.c3p0.UserService">
+        	<property name="userDao" ref="dao"></property>
+        </bean>
+        <bean id="dao" class="cn.ethan.c3p0.UserDao">
+       		<property name="jdbcTemplate" ref="template"></property>
+        </bean>
+        
+        <!-- 创建jdbcTemplate对象 -->
+       <!--  <bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
+        	把dataSource传递到jdbcTemplate中去
+        	<property name="dataSource" ref="comboPool"></property>
+        </bean> -->
+        
+        <!-- 配置事务管理器 -->
+        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        	<property name="dataSource" ref="comboPool"></property>
+        </bean>
+        
+        <!-- 配置事务的增强 -->
+        <tx:advice id="advice" transaction-manager="transactionManager">
+        	<tx:attributes>
+        		<!-- 设置进行事务操作的方法匹配规则 -->
+        		<tx:method name="transfer*"/>
+        	</tx:attributes>
+        </tx:advice>
+        
+        <!-- 配置切面 -->
+        <aop:config>
+        	<!-- 切入点 -->
+        	<aop:pointcut expression="execution(* cn.ethan.service.OrdersService.*(..))" id="transferCut"/>
+        	<!-- 切面 -->
+        	<aop:advisor advice-ref="advice" pointcut-ref="transferCut"/>
+        </aop:config>
+        
+        <bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
+        	<property name="dataSource" ref="comboPool"></property>
+        </bean>
+        
+        <bean id="ordersService" class="cn.ethan.service.OrdersService">
+        	<property name="ordersDao" ref="ordersDao"></property>
+        </bean>
+        <bean id="ordersDao" class="cn.ethan.dao.OrdersDao">
+        	<property name="jdbcTemplate" ref="template"></property>
+        </bean>
+        
+</beans>

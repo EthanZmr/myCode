@@ -1,0 +1,33 @@
+package com.ethan.download;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class DownLoad1Servlet
+ */
+@WebServlet("/DownLoad1Servlet")
+public class DownLoad1Servlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * 两个头一个流
+		 * 1.Content-type
+		 * 2.Content-Disposition
+		 * 3.流：下载文件的数据
+		 */
+		response.setContentType("");
+		FileInputStream input = new FileInputStream("/Users/ethan/Documents/demo/面试题.pages");
+		
+	}
+
+	
+
+}

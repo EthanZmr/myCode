@@ -1,0 +1,5 @@
+package com.ethan.web.servlet;
+
+public class ForwardServlet extends{
+	
+}

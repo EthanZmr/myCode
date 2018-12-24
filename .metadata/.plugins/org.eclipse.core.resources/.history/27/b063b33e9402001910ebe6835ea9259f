@@ -1,0 +1,5 @@
+package com.ethan.cstm.domain;
+
+public class Customer {
+
+}

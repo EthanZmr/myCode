@@ -1,0 +1,9 @@
+package com.ethan.cstm.domain;
+
+public class PageBean {
+	private int pageCode;
+	private int totalPages;
+	private int totalRecord;
+	private int pageSize;
+	private List<T> beanList; //当前页记录的数据
+}

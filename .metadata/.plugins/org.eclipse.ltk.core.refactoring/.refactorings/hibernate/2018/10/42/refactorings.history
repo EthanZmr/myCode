@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;User.java&apos; to &apos;spring/src/cn.ethan.jdbcTemplate&apos;&#x0A;- Original project: &apos;hibernate&apos;&#x0A;- Destination element: &apos;spring/src/cn.ethan.jdbcTemplate&apos;&#x0A;- Original element: &apos;cn.ethan.model.User.java&apos;" description="Copy compilation unit" destination="=spring/src&lt;cn.ethan.jdbcTemplate" element1="/src&lt;cn.ethan.model{User.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1539922058380" units="1" version="1.0"/>
+</session>

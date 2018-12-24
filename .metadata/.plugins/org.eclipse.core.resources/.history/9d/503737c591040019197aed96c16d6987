@@ -1,0 +1,60 @@
+package com.ethan.download;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class DownLoad1Servlet
+ */
+@WebServlet("/DownLoad1Servlet")
+public class DownLoad1Servlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * 两个头一个流
+		 * 1.Content-type
+		 * 2.Content-Disposition
+		 * 3.流：下载文件的数据
+		 */
+		String filename = "/Users/ethan/Documents/demo/面试题.pages";
+		int index = filename.lastIndexOf("/");
+		String _filename = filename.substring(index+1);
+		String framename = new String(filename.getBytes("GBK"),"ISO-8859-1");
+		/*
+		 * 通过文件获取MIME类型
+		 */
+		String contentType = this.getServletContext().getMimeType(filename);
+		
+		String contentDisposition = "attachment;filename=" + framename;
+		
+		FileInputStream input = new FileInputStream(filename);
+		
+		//设置头
+		response.setHeader("Content-Type", contentType);
+		response.setHeader("Content-Disposition", contentDisposition);
+		
+		/*
+		 * 获取绑定了客户端的流
+		 */
+		ServletOutputStream output = response.getOutputStream();
+		
+		int len = 0;
+		byte[] bys = new byte[1024];
+		while((len = input.read(bys)) != -1) {
+			output.write(bys, 0, len);
+		}
+		input.close();
+		
+	}
+
+	
+
+}

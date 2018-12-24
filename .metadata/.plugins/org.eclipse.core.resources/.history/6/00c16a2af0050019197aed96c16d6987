@@ -1,0 +1,36 @@
+package com.ethan.demo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+
+import com.ethan.domain.City;
+import com.ethan.domain.Province;
+import com.thoughtworks.xstream.XStream;
+
+public class Demo {
+	
+	public List<Province> getProvinceList(){
+		Province p1 = new Province();
+		p1.setName("北京");
+		p1.addCity(new City("东城区", "DongChengQu"));
+		p1.addCity(new City("昌平区", "ChangPingQu"));
+		
+		Province p2 = new Province();
+		p2.setName("辽宁");
+		p2.addCity(new City("沈阳", "shenYang"));
+		p2.addCity(new City("葫芦岛", "huLuDao"));
+		
+		List<Province> provinceList = new ArrayList<Province>();
+		provinceList.add(p1);
+		provinceList.add(p2);
+		
+		return provinceList;
+		
+	}
+	@Test
+	public void xstream() {
+		Xstream xstream = new XStream();
+	}
+}

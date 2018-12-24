@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	window.onload = function(){
+		var person = {"name":"zhangsan","age":18,"sex":"male"};
+		alert(person.name + "," + person.age);
+	}
+</script>
+<body>
+	<h1>json的应用</h1>
+</body>
+</html>

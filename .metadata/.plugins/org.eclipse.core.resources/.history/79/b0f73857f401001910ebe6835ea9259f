@@ -1,0 +1,152 @@
+package dbutils;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
+import org.junit.Test;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+/*
+ * commons-dbutils
+ * 简化jdbc的代码
+ */
+public class Demo {
+//	@Test
+//	public void addAcount(Acount acount) {
+//		Connection conn = null;
+//		PreparedStatement ps = null;
+//		try {
+//			conn = JdbcUtils.getConnection();
+//			String sql = "insert into acount values(?,?,?)";
+//			ps = conn.prepareStatement(sql);
+//			ps.setInt(1, acount.getId());
+//			ps.setString(2, acount.getUsername());
+//			ps.setInt(3, acount.getSalary());
+//			
+//			ps.executeUpdate();
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if(conn!= null) conn.close();
+//				if(ps != null) ps.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
+	
+	public void addAcountByDBUtils(Acount acount) {
+		ComboPooledDataSource dataSource = new ComboPooledDataSource();
+		QR qr = new QR(dataSource);
+		String sql = "insert into account values(?,?,?)";
+		Object[] params = {acount.getId(),acount.getUsername(),acount.getSalary()};
+		qr.update(sql, params);
+	}
+	
+	@Test
+	public void testAdd() {
+		Acount ac = new Acount();
+		ac.setId(3);
+		ac.setUsername("钱七");
+		ac.setSalary(50000);
+		addAcountByDBUtils(ac);
+	}
+	
+	public Acount load(int id) {
+		ComboPooledDataSource dataSource = new ComboPooledDataSource();
+		QR qr = new QR(dataSource);
+		String sql = "select * from account where id=?";
+		Object[] params = {id};
+		//内部类实现接口
+		RsHandler<Acount> rh = new RsHandler<Acount>() {
+			@Override
+			public Acount handle(ResultSet rs) throws SQLException {
+				Acount acount = new Acount();
+				while(!rs.next()) {
+					return null;
+				}
+				acount.setId(rs.getInt("id"));
+				acount.setUsername(rs.getString("username"));
+				acount.setSalary(rs.getInt("salary"));
+				return acount;
+			}
+		};
+		
+		return (Acount)qr.query(sql, rh, params);
+	}
+	
+	@Test
+	public void testquery() {
+		Acount acount = load(3);
+		System.out.println(acount);
+	}
+	
+	/*
+	 * QueryRunner Demo
+	 */
+	@Test
+	public void testQueryRunner() throws SQLException {
+		ComboPooledDataSource dataSource = new ComboPooledDataSource();
+		QueryRunner qr = new QueryRunner(dataSource);
+		String sql = "insert into account values(?,?,?)";
+		Object[] params= {4,"张八",30000};
+		qr.update(sql,params);
+	}
+	/*
+	 * QueryRunner 查询案例
+	 */
+	@Test
+	public void queryQueryRunner() throws SQLException {
+		ComboPooledDataSource dataSource = new ComboPooledDataSource();
+		QueryRunner qr = new QueryRunner(dataSource);
+		String sql = "select * from account where id=?";
+		Object[] params = {4};
+		Acount acount = qr.query(sql, new BeanHandler<Acount>(Acount.class),params);
+		System.out.println(acount);
+	}
+	
+	/*
+	 * BeanListHandler 查询案例
+	 * 多行处理器，每行对象一个Acount对象
+	 */
+	@Test
+	public void testBeanListHandler() throws SQLException {
+		ComboPooledDataSource dataSource = new ComboPooledDataSource();
+		QueryRunner qr = new QueryRunner(dataSource);
+		String sql = "select * from account";
+		List<Acount> list = qr.query(sql, new BeanListHandler<Acount>(Acount.class));
+		System.out.println(list);
+	}
+	/*
+	 * MapHandler的应用,它是单行处理器，把一行转换成一个Map对象
+	 */
+	@Test
+	public void testMapHandler() throws SQLException {
+		ComboPooledDataSource dataSource = new ComboPooledDataSource();
+		QueryRunner qr = new QueryRunner(dataSource);
+		String sql = "select * from account where id=?";
+		Object[] params = {1};
+		Map map = qr.query(sql, new MapHandler(),params);
+		System.out.println(map);
+	}
+	/*
+	 * MapListHandler,它是多行处理器，把每行都转换成一个map，即List<Map>
+	 */
+	@Test
+	public void testMapListHandler() throws SQLException {
+		ComboPooledDataSource dataSource = new ComboPooledDataSource();
+		QueryRunner qr = new QueryRunner(dataSource);
+		String sql = "select * from account";
+		List<Map<String,Object>> mapList = qr.query(sql, new MapListHandler());
+	}
+}

@@ -1,0 +1,14 @@
+package com.ethan.demo;
+
+import org.junit.Test;
+
+public class Demo {
+	
+	public List<Province> getProvinceList(){
+		
+	}
+	@Test
+	public void xstream() {
+		
+	}
+}

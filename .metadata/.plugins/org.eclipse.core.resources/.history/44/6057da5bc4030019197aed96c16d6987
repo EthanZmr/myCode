@@ -1,0 +1,24 @@
+package com.ethan.ip_demo;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
+
+/**
+ * Application Lifecycle Listener implementation class AListener
+ *
+ */
+@WebListener
+public class AListener implements ServletContextListener {
+
+	
+    public void contextDestroyed(ServletContextEvent arg0)  { 
+    	
+    }
+
+
+    public void contextInitialized(ServletContextEvent arg0)  { 
+    	
+    }
+	
+}

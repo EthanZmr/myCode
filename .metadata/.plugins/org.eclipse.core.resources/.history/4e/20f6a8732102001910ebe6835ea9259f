@@ -1,0 +1,80 @@
+package jdbc;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+public class JdbcUtilsVersion3 {
+	//配置文件的默认配置，必须给出c3p0-config.xml
+	private static ComboPooledDataSource dataSource = new ComboPooledDataSource();
+	
+	private static ThreadLocal<Connection> tl = new ThreadLocal<Connection>();
+	
+	/**
+	 * 使用连接池返回连接对象
+	 * @return
+	 * @throws SQLException
+	 */
+	public static Connection getConnection() throws SQLException {
+		if(tl.get() != null) return tl.get();
+		return dataSource.getConnection();
+	}
+	
+	/**
+	 * 返回连接池对象
+	 * @return
+	 */
+	public static DataSource getDataSource() {
+		return dataSource;
+	}
+	
+	/*
+	 * 开启事务
+	 * 1.获取一个Connection，这是它的setAutoCommit(false)
+	 * 2.保证dao中使用的连接是我们刚刚创建的
+	 * 
+	 * 	1。创建一个Connection，设置手动提交
+	 * 	2。把这个Connection给dao用
+	 * 	3。还要让这个commitTransaction和rollbackTransaction可以获取到
+	 */
+	public static void beginTransaction() throws SQLException {
+		Connection conn = tl.get();
+		if(conn != null) throw new RuntimeException("已开启事务"); 
+		conn = getConnection();
+		conn.setAutoCommit(false);
+		tl.set(conn);
+	}
+	/*
+	 * 提交事务
+	 * 1.获取beginTransaction提供的Connection ,然后调用commit方法
+	 */
+	public static void commitTransaction() throws SQLException {
+		Connection conn = tl.get();
+		if(conn == null) throw new RuntimeException("事务未开启");
+		conn.commit();
+		conn.close();
+		conn = null;
+		tl.set(conn);
+	}
+	
+	/*
+	 * 回滚事务
+	 * 1.获取beginTransaction提供的Connection, 然后调用rollback方法
+	 */
+	public static void rollbackTransaction() throws SQLException {
+		if(conn == null) throw new RuntimeException("事务未开启");
+		conn.rollback();
+		conn.close();
+		conn = null;
+	}
+	
+	/*
+	 * 释放连接
+	 */
+	public static void releaseConnection(Connection connection) throws SQLException {
+		if(conn == null || conn != connection) connection.close();
+	}
+}

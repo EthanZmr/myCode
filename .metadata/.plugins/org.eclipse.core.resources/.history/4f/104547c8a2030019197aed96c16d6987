@@ -1,0 +1,23 @@
+过滤器：
+	它会在一组资源（jsp，servlet，.css，.html等等）的前面执行
+	它可以让请求得到目标资源，也可以不让请求得到。
+	过滤器有拦截请求的能力。
+	
+	登录：
+		允许它访问AServlet BServlet CServlet
+		
+		
+	过滤器编写：
+		1.写一个类实现Filter接口
+		2.在web.xml中配置
+		
+		
+	Filter接口：
+		void init(FilterConfig)
+			* 创建之后，马上执行：Filter会在服务器启动时就创建
+		void destory()
+			* 销毁之前执行，在服务器关闭时销毁
+		void doFilter(ServletRequest,ServletResponse,FilterChain)
+			* 每次过滤时都会执行
+			
+	Filter是单例的

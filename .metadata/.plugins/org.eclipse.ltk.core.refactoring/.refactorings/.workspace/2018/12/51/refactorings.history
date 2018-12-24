@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;filter&apos; to &apos;Listener&apos;" description="Rename resource &apos;filter&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/filter" name="Listener" stamp="1545222018376" updateReferences="true"/>
+</session>

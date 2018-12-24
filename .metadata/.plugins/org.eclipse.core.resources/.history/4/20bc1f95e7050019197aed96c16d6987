@@ -1,0 +1,18 @@
+package com.ethan.demo;
+
+import java.util.List;
+
+import org.junit.Test;
+
+import com.ethan.domain.Province;
+
+public class Demo {
+	
+	public List<Province> getProvinceList(){
+		
+	}
+	@Test
+	public void xstream() {
+		
+	}
+}

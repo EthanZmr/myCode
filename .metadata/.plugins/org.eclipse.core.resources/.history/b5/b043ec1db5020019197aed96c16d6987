@@ -1,0 +1,24 @@
+package com.ethan.cstm.service;
+
+import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.ethan.cstm.dao.CustomerDao;
+import com.ethan.cstm.domain.Customer;
+
+public class CustomerService {
+	private CustomerDao customerDao = new CustomerDao();
+	
+	public void add(Customer c) throws SQLException, UnsupportedEncodingException {
+		customerDao.addCustomer(c);
+	}
+	
+	public List<Customer> findAll() throws SQLException {
+		return customerDao.findAll();
+	}
+	
+	public Customer findByCid(String cid) {
+		return customerDao.findByCid(cid);
+	}
+}

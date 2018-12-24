@@ -1,0 +1,7 @@
+package com.ethan.book_manager.web.servlet;
+
+import cn.itcast.servlet.BaseServlet;
+
+public class BookServlet extends BaseServlet{
+
+}

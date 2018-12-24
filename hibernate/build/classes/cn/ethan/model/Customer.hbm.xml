@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.ethan.model.Customer" table="t_customer">
+		<id name="cid" column="cid">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="custName" column="custName"></property>
+		<property name="custLevel" column="custLevel"></property>
+		<property name="custSource" column="custSource"></property>
+		<property name="custPhone" column="custPhone"></property>
+		<property name="custMobile" column="custMobile"></property>
+		
+		<!-- 在客户映射文件中表示所有联系人
+			使用set标签表示所有联系人
+			name：客户实体类中表示联系人的set集合名称 
+			inverse:让其中一方放弃维护外键 以提高性能
+			cascade:一对多级联保存简化写法-->
+		<set name="setContact" cascade="save-update,delete" inverse="true" fetch="select" lazy="true">
+			<!-- 一对多建表 有外键
+				hibernate机制：双向维护外键
+				一和多双方都要配置外键 -->
+			<key column="contactId"></key>
+			<!-- 客户所有联系人
+				class：联系人实体类的全路径 -->
+			<one-to-many class="cn.ethan.model.Contact"></one-to-many>
+		</set>
+	</class>
+</hibernate-mapping>
